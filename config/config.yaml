@@ -1,0 +1,21 @@
+image_transport: compressed
+match_threshold: 0.8
+number_of_frames_to_jump: 10
+match_appearance_threshold: 0.8
+frames_to_jump_tow_trainer: 10
+image_topic: /tazmania/camera/right
+bow:
+    dictionary_path: /home/lsilveira/Codigos/catkin_ws/src/bow_trainer/
+    surf_threshold: 50
+    number_of_groups: 100
+cann:
+    number_of_neurons: [15, 15, 15, 1]
+    distance_between_neurons: [0.1, 0.1, 0.1]
+    excitatory_variance: [0.2, 0.2, 0.2, 1.0]
+    global_inibition: 0.001
+    input_learning_rate: 0.25
+    external_input_min_age: 1
+test_number: 2
+multiple_local_view_active: true
+
+use_gaussian_weights: false

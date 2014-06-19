@@ -1,0 +1,17 @@
+<launch>
+
+    <env name="ROSCONSOLE_CONFIG_FILE" value="$(find dolphin_slam)/config/custom_rosconsole.conf"/>
+
+    <rosparam command="load" file="$(find dolphin_slam)/config/config$(arg config_number).yaml" />
+
+    <node name="local_view_node" pkg="dolphin_slam" type="local_view_node" required="true"/>
+
+    <node name="robot_state_node" pkg="dolphin_slam" type="robot_state_node" required="true"/>
+
+    <node name="pose_cell_node" pkg="dolphin_slam" type="pose_cell_node" required="true"/>c
+
+    <node name="experience_map_node" pkg="dolphin_slam" type="experience_map_node" required="true"/>
+
+    <node name="rosbag" pkg="rosbag" type="play" args="/home/lsilveira/Codigos/Datasets/UWSim/cenario_1_errox4_2013-09-30-17-51-32.bag -r 2 -q -d 2" required="true" />
+
+</launch>

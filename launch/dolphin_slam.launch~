@@ -1,0 +1,31 @@
+<launch>
+
+    <env name="ROSCONSOLE_CONFIG_FILE" value="$(find dolphin_slam)/config/custom_rosconsole.conf"/>
+
+    <rosparam command="load" file="$(find dolphin_slam)/config/config$(arg config_number).yaml" />
+
+    <node name="local_view_node" pkg="dolphin_slam" type="local_view_node" required="true"/>
+
+    <node name="robot_state_node" pkg="dolphin_slam" type="robot_state_node" required="true"/>
+
+    <node name="pose_cell_node" pkg="dolphin_slam" type="pose_cell_node" required="true"/>
+
+    <node name="rosbag" pkg="rosbag" type="play" args="/media/Dados/Datasets\ UWSim/2014-01-31-17-44-35.bag -q -d 2 -r 2"/>
+
+    <!-- Visualization tools -->
+    <node name="experience_map_node" pkg="dolphin_slam" type="experience_map_node" required="true"/>
+
+    <node name="rviz_pc" pkg="rviz" type="rviz" args="-d $(find dolphin_slam)/config/pose_cell.rviz"  respawn="false"/>
+
+    <!-- node name="plot" pkg="rqt_plot" type="rqt_plot" args="error/dead_reckoning_error:experience_map_error"  respawn="true"/ -->
+
+    <node name="rviz_em" pkg="rviz" type="rviz" args="-d $(find dolphin_slam)/config/experience_map.rviz" respawn="true"/>
+
+    <!-- node name="image_view" pkg="image_view" type="image_view" args="image:=/uwsim/camera1 compressed"  respawn="true"/ -->
+
+    <!-- node name="console" pkg="rqt_console" type="rqt_console"/ -->
+
+    <node name="template_view_node" pkg="template_view" type="template_view_node" />
+
+
+</launch>

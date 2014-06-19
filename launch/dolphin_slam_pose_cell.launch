@@ -1,0 +1,19 @@
+<launch>
+
+    <env name="ROSCONSOLE_CONFIG_FILE" value="$(find dolphin_slam)/config/custom_rosconsole.conf"/>
+
+    <rosparam command="load" file="$(find dolphin_slam)/config/config_pose_cell$(arg config_number).yaml" />
+
+    <node name="local_view_node" pkg="dolphin_slam" type="local_view_node" required="true"/>
+
+    <node name="robot_state_node" pkg="dolphin_slam" type="robot_state_node" required="true"/>
+
+    <node name="pose_cell_node" pkg="dolphin_slam" type="pose_cell_node" required="true"/>
+
+    <!-- Visualization tools -->
+
+    <node name="rviz_pc" pkg="rviz" type="rviz" args="-d $(find dolphin_slam)/config/pose_cell.rviz"  respawn="true"/>
+
+    <node name="console" pkg="rqt_console" type="rqt_console"/>
+
+</launch>
