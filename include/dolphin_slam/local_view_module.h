@@ -19,7 +19,7 @@
 #include <boost/foreach.hpp>
 
 #include <fstream>
-#include "time_monitor.h"
+#include <time_monitor/time_monitor.h>
 
 #define foreach BOOST_FOREACH
 
